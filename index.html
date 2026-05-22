@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translate Voice — Lồng tiếng Việt real-time cho YouTube</title>
+  <meta name="description" content="Chrome extension dịch giọng nói real-time cho YouTube. Đọc phụ đề bằng tiếng Việt neural tự nhiên.">
+  <style>
+    :root {
+      --vn-red: #DA251D;
+      --vn-yellow: #FFCC00;
+      --text: #1a1a1a;
+      --muted: #666;
+      --bg: #fafafa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      background: linear-gradient(135deg, var(--vn-red), var(--vn-yellow));
+      color: white;
+      margin: -2rem -1.5rem 2rem;
+      border-radius: 0 0 16px 16px;
+    }
+    .hero h1 { margin: 0 0 0.5rem; font-size: 2rem; }
+    .hero p { margin: 0; font-size: 1.1rem; opacity: 0.95; }
+    h2 { margin-top: 2.5rem; color: var(--vn-red); }
+    a { color: var(--vn-red); }
+    .cta {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--vn-red);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #ddd;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    ul.features li { margin-bottom: 0.5rem; }
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .tier {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .tier h3 { margin: 0 0 0.25rem; font-size: 1rem; color: var(--text); }
+    .tier .price { font-size: 1.5rem; font-weight: 700; color: var(--vn-red); }
+    .tier .limit { font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Translate Voice</h1>
+    <p>Lồng tiếng Việt real-time cho mọi video YouTube</p>
+  </div>
+
+  <p>Xem video YouTube tiếng Anh, nghe tiếng Việt ngay lập tức. Extension tự động đọc phụ đề có sẵn bằng giọng nói neural tự nhiên — không cần đợi, không cần subscription bên thứ 3.</p>
+
+  <h2>Tính năng chính</h2>
+  <ul class="features">
+    <li>🎙️ <strong>Lồng tiếng real-time</strong> — độ trễ &lt;1 giây</li>
+    <li>📝 <strong>Đọc phụ đề có sẵn</strong> — tự động dùng caption YouTube</li>
+    <li>🗣️ <strong>Giọng neural tự nhiên</strong> — Azure/Google TTS chất lượng broadcast</li>
+    <li>🌍 <strong>Đa ngôn ngữ</strong> — EN/JA/KO/ZH/ES/FR → tiếng Việt</li>
+    <li>⚡ <strong>Hoạt động trên mọi video YouTube</strong></li>
+  </ul>
+
+  <h2>Gói dịch vụ</h2>
+  <div class="pricing">
+    <div class="tier"><h3>Free</h3><div class="price">$0</div><div class="limit">10 phút/ngày</div></div>
+    <div class="tier"><h3>Starter</h3><div class="price">$4.99</div><div class="limit">5h/tháng</div></div>
+    <div class="tier"><h3>Standard</h3><div class="price">$9.99</div><div class="limit">15h/tháng</div></div>
+    <div class="tier"><h3>Pro</h3><div class="price">$19.99</div><div class="limit">40h/tháng</div></div>
+    <div class="tier"><h3>Unlimited</h3><div class="price">$39.99</div><div class="limit">200h/tháng</div></div>
+  </div>
+
+  <h2>Liên hệ</h2>
+  <p>Mọi câu hỏi, báo lỗi hoặc đề xuất tính năng, gửi email về:<br>
+    <a href="mailto:letranngoc.mmo@gmail.com">letranngoc.mmo@gmail.com</a>
+  </p>
+
+  <p>
+    <a href="privacy.html" class="cta">Privacy Policy</a>
+  </p>
+
+  <div class="footer">
+    <p>© 2026 Translate Voice. Made with ❤️ in Vietnam.</p>
+  </div>
+</body>
+</html>

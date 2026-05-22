@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Translate Voice</title>
+  <style>
+    :root {
+      --vn-red: #DA251D;
+      --text: #1a1a1a;
+      --muted: #666;
+      --bg: #fafafa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    h1 { color: var(--vn-red); border-bottom: 3px solid var(--vn-red); padding-bottom: 0.5rem; }
+    h2 { color: var(--vn-red); margin-top: 2rem; }
+    h3 { margin-top: 1.5rem; }
+    a { color: var(--vn-red); }
+    .meta { color: var(--muted); font-size: 0.9rem; }
+    .tldr {
+      background: #fff8e1;
+      border-left: 4px solid var(--vn-red);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    .tldr ul { margin: 0.5rem 0; padding-left: 1.25rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: 0.5rem; border: 1px solid #ddd; text-align: left; vertical-align: top; }
+    th { background: #f0f0f0; }
+    .nav { margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="index.html">← Back to home</a></div>
+
+  <h1>Privacy Policy — Translate Voice</h1>
+  <p class="meta"><strong>Last updated:</strong> May 22, 2026 · <strong>Contact:</strong> <a href="mailto:letranngoc.mmo@gmail.com">letranngoc.mmo@gmail.com</a></p>
+
+  <p>This Privacy Policy describes how Translate Voice ("the Extension", "we", "us") handles your data when you use our Chrome extension.</p>
+
+  <div class="tldr">
+    <strong>TL;DR</strong>
+    <ul>
+      <li>We do NOT record, store, or transmit audio from your microphone.</li>
+      <li>We DO send YouTube captions to Azure/Google AI APIs for translation + text-to-speech (processed in-memory, never stored).</li>
+      <li>We DO store your email + subscription tier in our database (required for billing).</li>
+      <li>We DO NOT sell, share, or use your data for advertising.</li>
+    </ul>
+  </div>
+
+  <h2>Data we collect</h2>
+
+  <h3>1. Account data (when you sign in)</h3>
+  <ul>
+    <li><strong>Email address</strong> — from Google OAuth, used as your account identifier.</li>
+    <li><strong>Google account ID</strong> (<code>sub</code> claim) — used to authenticate you across devices.</li>
+    <li><strong>Subscription tier + billing status</strong> — synced from Polar.sh webhooks.</li>
+    <li><strong>Browser fingerprint hash</strong> — used to prevent abuse (max 3 accounts per browser).</li>
+  </ul>
+  <p>Stored in: MongoDB Atlas (encrypted at rest).</p>
+
+  <h3>2. Usage data (per session)</h3>
+  <ul>
+    <li><strong>Seconds captured</strong> — total audio duration processed today (for quota enforcement).</li>
+    <li><strong>Characters translated</strong> — total translation tokens used today.</li>
+    <li><strong>Characters synthesized</strong> — total TTS tokens used today.</li>
+  </ul>
+  <p>Stored in: MongoDB Atlas (aggregated daily counters, no per-video log).</p>
+
+  <h3>3. Settings (local-only)</h3>
+  <ul>
+    <li>Voice preference (male/female, speed, volume).</li>
+    <li>Source language preference.</li>
+  </ul>
+  <p>Stored in: <code>chrome.storage.local</code> (your browser, never sent to us).</p>
+
+  <h2>Data we DO NOT collect</h2>
+  <ul>
+    <li>Audio from your microphone — <strong>never captured.</strong></li>
+    <li>Raw audio from YouTube — <strong>never recorded.</strong></li>
+    <li>Browsing history outside YouTube — <strong>no access.</strong></li>
+    <li>Personal information beyond email — <strong>no name, photo, contacts.</strong></li>
+    <li>IP address — <strong>not logged in application database</strong> (Fly.io may log in transit per their policy).</li>
+  </ul>
+
+  <h2>How we use your data</h2>
+
+  <h3>Translation + TTS</h3>
+  <p>When you play a YouTube video with the extension active:</p>
+  <ol>
+    <li>The extension reads existing captions from the YouTube player (or transcribes audio via Deepgram if captions are missing).</li>
+    <li>Caption text is sent to <strong>Azure Translator API</strong> (or Google Translate) → returns Vietnamese text.</li>
+    <li>Vietnamese text is sent to <strong>Azure TTS</strong> (or Google Cloud TTS) → returns audio bytes.</li>
+    <li>Audio bytes are played in your browser.</li>
+  </ol>
+  <p><strong>Important:</strong> Caption text + audio bytes are processed <strong>in-memory only</strong>. We do NOT log them, store them, or send them to any other party.</p>
+
+  <h3>Billing</h3>
+  <ul>
+    <li>Polar.sh handles all payment data (card numbers, etc.). We never see your card.</li>
+    <li>We receive only: subscription tier name + status (active/canceled) via webhook.</li>
+  </ul>
+
+  <h3>Quota enforcement</h3>
+  <ul>
+    <li>We aggregate daily totals (seconds, characters) to enforce your tier's monthly cap.</li>
+    <li>Aggregates are retained for 30 days then deleted.</li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr></thead>
+    <tbody>
+      <tr><td>Google OAuth</td><td>Sign-in</td><td>Email + Google ID</td></tr>
+      <tr><td>Azure Translator API</td><td>Translation</td><td>Caption text (temporary, not stored by us)</td></tr>
+      <tr><td>Azure TTS / Google Cloud TTS</td><td>Voice synthesis</td><td>Translated text (temporary, not stored by us)</td></tr>
+      <tr><td>Deepgram</td><td>Speech recognition fallback (when no captions)</td><td>Audio buffer (temporary, not stored by us)</td></tr>
+      <tr><td>Polar.sh</td><td>Billing</td><td>Email + tier (we receive webhook callbacks only)</td></tr>
+      <tr><td>MongoDB Atlas</td><td>Database</td><td>All persistent data above</td></tr>
+      <tr><td>Fly.io</td><td>Backend hosting</td><td>Logs (request IDs, not payloads)</td></tr>
+    </tbody>
+  </table>
+  <p>Each provider has its own privacy policy. Sensitive payloads (caption text, audio) are not retained by us; what those providers do with the data they process is governed by their respective terms.</p>
+
+  <h2>Data retention</h2>
+  <ul>
+    <li><strong>Account data:</strong> until you delete your account (request via email).</li>
+    <li><strong>Usage aggregates:</strong> 30 days, then deleted.</li>
+    <li><strong>Caption text + audio:</strong> never stored, processed in-memory only.</li>
+    <li><strong>Logs (Fly.io):</strong> 7 days, no payload content.</li>
+  </ul>
+
+  <h2>Your rights (GDPR / CCPA)</h2>
+  <p>You can request:</p>
+  <ul>
+    <li><strong>Access</strong> — copy of all data we have about you.</li>
+    <li><strong>Deletion</strong> — delete your account + all associated data.</li>
+    <li><strong>Export</strong> — JSON export of your usage history.</li>
+    <li><strong>Correction</strong> — fix incorrect data.</li>
+  </ul>
+  <p>Send request to <a href="mailto:letranngoc.mmo@gmail.com">letranngoc.mmo@gmail.com</a>. We respond within 14 days.</p>
+
+  <h2>Children's privacy</h2>
+  <p>Translate Voice is not intended for users under 13. We do not knowingly collect data from children.</p>
+
+  <h2>Data security</h2>
+  <ul>
+    <li>All data in transit: HTTPS / TLS 1.2+.</li>
+    <li>All data at rest (MongoDB Atlas): AES-256 encryption.</li>
+    <li>JWT auth tokens: HMAC-SHA256 signed, 7-day expiry.</li>
+    <li>Polar webhook signatures: HMAC-SHA256 verified per Standard Webhooks spec.</li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>We will update this page when material changes occur. Previous versions remain available on request.</p>
+
+  <h2>Contact</h2>
+  <p><strong>Email:</strong> <a href="mailto:letranngoc.mmo@gmail.com">letranngoc.mmo@gmail.com</a></p>
+</body>
+</html>
